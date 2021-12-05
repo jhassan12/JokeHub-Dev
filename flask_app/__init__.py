@@ -1,3 +1,5 @@
+import os
+from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for
 from flask_talisman import Talisman
 from flask_mongoengine import MongoEngine
@@ -12,10 +14,6 @@ from flask_bcrypt import Bcrypt
 from werkzeug.utils import secure_filename
 
 from .client import LaughFactoryClient
-
-from datetime import datetime
-import os
-
 
 db = MongoEngine()
 login_manager = LoginManager()

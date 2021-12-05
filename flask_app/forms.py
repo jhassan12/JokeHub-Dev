@@ -15,8 +15,6 @@ from wtforms.validators import (
 
 from .models import User
 
-import string
-
 def trim(data):
     return data.strip() if data else ""
 
