@@ -16,6 +16,11 @@ import os
 
 from .client import LaughFactoryClient
 
+import logging
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
+
 db = MongoEngine()
 login_manager = LoginManager()
 bcrypt = Bcrypt()
