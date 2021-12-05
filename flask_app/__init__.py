@@ -31,7 +31,7 @@ def page_not_found(e):
 def create_app(test_config=None):
     app = Flask(__name__)
 
-    app.config["MONGODB_HOST"] = os.getenv("MONGODB_HOST")
+    app.config.from_pyfile("config.py", silent=False)
 
     csp = {
         'default-src': '\'self\'',
@@ -45,8 +45,8 @@ def create_app(test_config=None):
 
     is_prod = os.environ.get('IS_HEROKU', None)
 
-    if not is_prod:
-        app.config.from_pyfile("config.py", silent=False)
+    if is_prod:
+        app.config["MONGODB_HOST"] = os.getenv("MONGODB_HOST")
 
     if test_config is not None:
         app.config.update(test_config)
