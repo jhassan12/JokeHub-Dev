@@ -12,14 +12,11 @@ from flask_bcrypt import Bcrypt
 from werkzeug.utils import secure_filename
 
 from datetime import datetime
-import os
+import os, sys
 
 from .client import LaughFactoryClient
 
 import logging
-
-app.logger.addHandler(logging.StreamHandler(sys.stdout))
-app.logger.setLevel(logging.ERROR)
 
 db = MongoEngine()
 login_manager = LoginManager()
@@ -34,6 +31,10 @@ def page_not_found(e):
 
 def create_app(test_config=None):
     app = Flask(__name__)
+
+
+    app.logger.addHandler(logging.StreamHandler(sys.stdout))
+    app.logger.setLevel(logging.ERROR)
 
     app.config["MONGODB_HOST"] = os.getenv("MONGODB_HOST")
 
