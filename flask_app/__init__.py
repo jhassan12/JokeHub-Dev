@@ -11,12 +11,11 @@ from flask_login import (
 from flask_bcrypt import Bcrypt
 from werkzeug.utils import secure_filename
 
-from datetime import datetime
-import os, sys
-
 from .client import LaughFactoryClient
 
-import logging
+from datetime import datetime
+import os
+
 
 db = MongoEngine()
 login_manager = LoginManager()
@@ -32,10 +31,6 @@ def page_not_found(e):
 def create_app(test_config=None):
     app = Flask(__name__)
 
-
-    app.logger.addHandler(logging.StreamHandler(sys.stdout))
-    app.logger.setLevel(logging.ERROR)
-
     app.config["MONGODB_HOST"] = os.getenv("MONGODB_HOST")
 
     csp = {
@@ -48,7 +43,11 @@ def create_app(test_config=None):
 
     Talisman(app, content_security_policy=csp)
 
-    app.config.from_pyfile("config.py", silent=False)
+    is_prod = os.environ.get('IS_HEROKU', None)
+
+    if not is_prod:
+        app.config.from_pyfile("config.py", silent=False)
+
     if test_config is not None:
         app.config.update(test_config)
 
