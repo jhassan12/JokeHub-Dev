@@ -1,15 +1,18 @@
+from datetime import datetime
 from flask import Blueprint, render_template, url_for, redirect, request, flash, abort
 from flask_login import current_user, login_required
+
 import re
 
 from .. import laugh_factory_client
+
+from ..utils import convert_datetime
 
 from ..models import User
 
 from ..forms import JokeForm, JokeCommentForm, SearchForm
 from ..models import User, Joke, Comment
 
-from datetime import datetime
 
 jokes = Blueprint('jokes', __name__, static_folder='static', template_folder='templates')
 
@@ -34,7 +37,7 @@ def index():
 	jokes.sort(key=lambda x: x.date, reverse=True)
 
 	for joke in jokes:
-		joke.date = joke.date.strftime("%B %d, %Y at %H:%M:%S")
+		joke.date = convert_datetime(joke.date)
 		joke.can_delete = joke.author.username == current_user.username
 		joke.heart_filled_in = str(joke.id) in user_likes_arr
 
@@ -49,7 +52,7 @@ def all_jokes():
 	jokes = Joke.objects().order_by("-date")
 
 	for joke in jokes:
-		joke.date = joke.date.strftime("%B %d, %Y at %H:%M:%S")
+		joke.date = convert_datetime(joke.date)
 		joke.can_delete = joke.author.username == current_user.username
 		joke.heart_filled_in = str(joke.id) in user_likes_arr
 
@@ -180,10 +183,10 @@ def joke(jokeid):
 
 	for comment in comments:
 		comment.heart_filled_in = str(comment.id) in user_comment_likes_arr
-		comment.date = comment.date.strftime("%B %d, %Y at %H:%M:%S")
+		comment.date = convert_datetime(comment.date)
 		comment.can_delete = comment.author.username == current_user.username
 
-	joke.date = joke.date.strftime("%B %d, %Y at %H:%M:%S")
+	joke.date = convert_datetime(joke.date)
 	joke.can_delete = joke.author.username == current_user.username
 
 	return render_template("joke.html", joke=joke, form=form, title="Joke", comments=comments)
@@ -294,7 +297,7 @@ def search_results(query):
 	jokes = Joke.objects(content=regex).order_by("-date")
 
 	for joke in jokes:
-		joke.date = joke.date.strftime("%B %d, %Y at %H:%M:%S")
+		joke.date = convert_datetime(joke.date)
 		joke.can_delete = joke.author.username == current_user.username
 		joke.heart_filled_in = str(joke.id) in user_likes_arr
 

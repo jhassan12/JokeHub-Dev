@@ -3,6 +3,8 @@ from flask_login import current_user, login_required, login_user, logout_user
 
 from .. import bcrypt
 
+from ..utils import convert_datetime
+
 from ..forms import RegistrationForm, LoginForm, ChangeUsernameForm
 from ..models import User
 
@@ -82,7 +84,7 @@ def profile(username):
             return redirect(url_for('users.profile', username=username))
 
     for joke in jokes:
-        joke.date = joke.date.strftime("%B %d, %Y at %H:%M:%S")
+        joke.date = convert_datetime(joke.date)
         joke.can_delete = joke.author.username == current_user.username
         joke.heart_filled_in = str(joke.id) in user_likes_arr
 
