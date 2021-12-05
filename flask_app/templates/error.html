@@ -1,0 +1,20 @@
+{% extends "header.html" %}
+{% block content %}
+
+<div class="row error-page">
+    <div class="col error-container">
+        <h1 class="header">
+            404 - Page Not Found
+        </h1>
+
+        <div>
+        	<img src="{{url_for('static', filename='error_clown.png')}}" width="500" height="500"/>
+        </div>
+        
+        <a href="{{ url_for('jokes.index') }}" class="redirect">
+                Go back to the home page
+        </a>
+    </div>
+</div>
+
+{% endblock %}

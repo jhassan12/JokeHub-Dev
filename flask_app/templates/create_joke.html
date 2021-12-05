@@ -1,0 +1,30 @@
+{% extends "header.html" %}
+{% block content %}
+
+<div class="form-container">
+  <h2 class="header">
+    Create Joke
+  </h2>
+
+  <form method="POST" action="">
+    {{ form.csrf_token }}
+    <div class="form-group">
+      {{ form.content.label }}
+      {{ form.content(class="form-control") }}
+
+      {% if form.content.errors %}
+      <div class="alert alert-warning" role="alert">
+        {% for error in form.content.errors %}
+          <span>{{ error }}</span>
+        {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.submit(class="form-control form-control-lg") }}
+    </div>
+  </form>  
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,169 @@
+.navbar-custom {
+	background-color: red;
+	margin-bottom: 25px;
+}
+
+.navbar-custom a {
+	color: white !important;
+}
+
+.navbar-custom .navbar-toggler-icon {
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-custom .navbar-toggler
+{
+	border: 1px solid white;
+}
+
+.navbar-custom .navbar-toggler:focus {
+	outline: none;
+}
+
+.error-page img {
+	padding: 25px;
+}
+
+.form-container {
+	background-color: #ffcccb;
+	padding: 25px;
+	border-radius: 25px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.form-container .header,
+.form-container .footer {
+	text-align: center;
+}
+
+.joke {
+	background-color: lavender;
+}
+
+.comment {
+	background-color: lavenderblush;
+}
+
+.content-container {
+	position: relative;
+	padding: 25px;
+	border-radius: 25px;
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+    transition: transform 0.3s;
+    margin-bottom: 15px;
+
+}
+
+.content-container .username a {
+	font-weight: bold;
+	color: black;
+}
+
+.content-container .username {
+	font-weight: bold;
+}
+
+.content-container .date {
+	float: right;
+	color: gray;
+}
+
+.content-container .content {
+	padding-top: 30px;
+}
+
+.content-container:hover {
+	background-color: #dcd0ff;
+}
+
+.content-container .icon-container {
+	padding-top: 20px;
+}
+
+.content-container .see-comments-container {
+	float: right;
+}
+
+.content-container .footer {
+	padding-top: 25px
+}
+
+.fa-heart {
+    color: red;
+}
+
+.heart {
+	cursor: pointer;
+}
+
+.empty-message {
+    color: gray;
+    font-weight: bold;
+    font-size: 40px;
+    margin-top: 50px;
+}
+
+.alert-message {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.comments-header {
+	margin-top: 50px;
+}
+
+.content-container .delete {
+	position: absolute;
+	padding: 5px;
+	right: 5px;
+	top: 2;
+	font-size: 20px;
+	color: red;
+	cursor: pointer;
+}
+
+.list-container .list-header {
+	padding-top: 25px;
+	padding-bottom: 15px
+}
+
+.page-header {
+	padding-bottom: 15px;
+}
+
+.alert-warning {
+    margin-top: 5px;
+}
+
+.l-joke .fa-thumbs-up,
+.l-joke .fa-thumbs-down {
+	padding-right: 10px;
+}
+
+.l-joke .fa-thumbs-up {
+	color: green;
+}
+
+.l-joke .fa-thumbs-down {
+	color: red;
+}
+
+.l-joke .num_likes {
+    margin-right: 15px;
+}
+
+.load-more {
+	text-align: center;
+	padding: 25px;
+}
+
+.error-page .error-container {
+	text-align: center;
+}
+
+.error-page .error-container .header {
+	padding-bottom: 50px;
+}
+

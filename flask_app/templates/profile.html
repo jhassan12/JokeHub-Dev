@@ -1,0 +1,98 @@
+{% extends "header.html" %}
+{% block content %}
+
+<div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+
+<h1 class="page-header">
+  {{ user.username }}'s profile
+</h1>
+
+{% if show_form %}
+  <div class="form-container">
+    <h2 class="header">
+      Change Username
+    </h2>
+    <form method="POST" action="">
+      {{ form.csrf_token }}
+      <div class="form-group">
+        {{ form.username.label }}
+        {{ form.username(class="form-control") }}
+
+        {% if form.username.errors %}
+        <div class="alert alert-warning" role="alert">
+          {% for error in form.username.errors %}
+            <span>{{ error }}</span>
+          {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.submit(class="form-control form-control-lg") }}
+      </div>
+    </form>
+  </div>
+{% endif %}
+
+{% if jokes %}
+  <div class="list-container">
+    <h2 class="list-header">
+    {{ user.username }}'s jokes
+    </h2>
+
+    {% for joke in jokes %}
+          
+    <div class="content-container joke">
+      {% if joke.can_delete %}
+        <div class="delete" data-url="{{ url_for('jokes.delete_joke', jokeid=joke.id) }}">
+          <i class="fas fa-minus-circle"></i>
+        </div>
+      {% endif %}
+
+      <div class="header">
+        <span class="username"><a href="{{ url_for('users.profile', username=joke.author.username) }}">{{ joke.author.username }}</a></span>
+        <span class="date">{{ joke.date }}</span>
+      </div>
+
+      <div class="content">
+        {{ joke.content }}
+      </div>
+
+      <div class="footer">
+        <span class="icon-container">
+          <span class="heart" data-url="{{ url_for('jokes.update_joke_likes', jokeid=joke.id) }}">
+
+          {% if joke.heart_filled_in %}
+            <i class="fas fa-heart"></i>
+          {% else %}
+            <i class="far fa-heart"></i>
+          {% endif %}
+
+          </span>
+          <span class="num_likes">{{ joke.likes }}</span>
+        </span>
+
+        <span class="see-comments-container">
+          <span class="see-comments"><a href="{{ url_for('jokes.joke', jokeid=joke.id) }}">See Comments</a></span>
+        </span>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+{% else %}
+
+<div class="empty-message">
+  There are no jokes to show.
+</div>
+
+{% endif %}
+{% endblock %}
