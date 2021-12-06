@@ -60,7 +60,7 @@
 
       <div class="header">
         <span class="username"><a href="{{ url_for('users.profile', username=joke.author.username) }}">{{ joke.author.username }}</a></span>
-        <span class="date">{{ joke.date_str }}</span>
+        <span class="date">{{ joke.date }}</span>
       </div>
 
       <div class="content">

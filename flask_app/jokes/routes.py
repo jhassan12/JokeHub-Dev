@@ -33,6 +33,7 @@ def index():
 	jokes.sort(key=lambda x: x.date, reverse=True)
 
 	for joke in jokes:
+		joke.date = convert_datetime(joke.date)
 		joke.can_delete = joke.author.username == current_user.username
 		joke.heart_filled_in = str(joke.id) in user_likes_arr
 
@@ -47,6 +48,7 @@ def all_jokes():
 	jokes = Joke.objects().order_by("-date")
 
 	for joke in jokes:
+		joke.date = convert_datetime(joke.date)
 		joke.can_delete = joke.author.username == current_user.username
 		joke.heart_filled_in = str(joke.id) in user_likes_arr
 
@@ -58,13 +60,11 @@ def create():
 	form = JokeForm()
 
 	if form.validate_on_submit():
-		now = datetime.now()
 
 		joke = Joke(
 			author=current_user._get_current_object(),
 			content=form.content.data,
-			date=now,
-			date_str=convert_datetime(now),
+			date=datetime.now(),
 			likes=0
 		)
 
@@ -162,14 +162,12 @@ def joke(jokeid):
 	form = JokeCommentForm()
 
 	if form.validate_on_submit():
-		now = datetime.now()
 
 		comment = Comment(
 			jokeid=jokeid,
 			author=current_user._get_current_object(),
 			content=form.content.data,
-			date=now,
-			date_str=convert_datetime(now),
+			date=datetime.now(),
 			likes=0
 		)
 
@@ -182,6 +180,7 @@ def joke(jokeid):
 	comments = Comment.objects(jokeid=jokeid).order_by('-date')
 
 	for comment in comments:
+		comment.date = convert_datetime(comment.date)
 		comment.heart_filled_in = str(comment.id) in user_comment_likes_arr
 		comment.can_delete = comment.author.username == current_user.username
 
@@ -295,6 +294,7 @@ def search_results(query):
 	jokes = Joke.objects(content=regex).order_by("-date")
 
 	for joke in jokes:
+		joke.date = convert_datetime(joke.date)
 		joke.can_delete = joke.author.username == current_user.username
 		joke.heart_filled_in = str(joke.id) in user_likes_arr
 

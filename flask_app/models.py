@@ -21,7 +21,6 @@ class Joke(db.Document):
     author = db.ReferenceField(User, required=True)
     content = db.StringField(required=True, min_length=3, max_length=500)
     date = db.DateTimeField(required=True)
-    date_str = db.StringField(required=True)
     likes = db.IntField(required=True)
 
 class Comment(db.Document):
@@ -29,5 +28,4 @@ class Comment(db.Document):
     author = db.ReferenceField(User, required=True)
     content = db.StringField(required=True, min_length=3, max_length=500)
     date = db.DateTimeField(required=True)
-    date_str = db.StringField(required=True)
     likes = db.IntField(required=True)
