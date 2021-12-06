@@ -67,7 +67,7 @@ def create():
 		joke = Joke(
 			author=current_user._get_current_object(),
 			content=form.content.data,
-			date=datetime.now(),
+			date=datetime.utcnow(),
 			likes=0
 		)
 
@@ -169,7 +169,7 @@ def joke(jokeid):
 			jokeid=jokeid,
 			author=current_user._get_current_object(),
 			content=form.content.data,
-			date=datetime.now(),
+			date=datetime.utcnow(),
 			likes=0
 		)
 
