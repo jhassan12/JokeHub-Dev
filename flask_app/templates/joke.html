@@ -22,7 +22,7 @@
 
 	<div class="header">
 		<span class="username"><a href="{{ url_for('users.profile', username=joke.author.username) }}">{{ joke.author.username }}</a></span>
-		<span class="date">{{ joke.date }}</span>
+		<span class="date">{{ joke.date_str }}</span>
 	</div>
 
 	<div class="content">
@@ -63,7 +63,7 @@
 		{% endif %}
 		<div class="header">
 			<span class="username"><a href="{{ url_for('users.profile', username=comment.author.username) }}">{{ comment.author.username }}</a></span>
-			<span class="date">{{ comment.date }}</span>
+			<span class="date">{{ comment.date_str }}</span>
 		</div>
 
 		<div class="content">
