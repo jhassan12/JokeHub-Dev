@@ -56,7 +56,6 @@ class LaughFactoryClient(object):
 			jokes = self.load_data(i)
 
 			if not jokes:
-				print(i)
 				continue
 
 			for joke in jokes:

@@ -8,9 +8,9 @@ def load_user(user_id):
     return User.objects(username=user_id).first()
 
 class User(db.Document, UserMixin):
-    username = db.StringField(required=True, unique=True)
+    username = db.StringField(required=True, unique=True, min_length=3, max_length=50)
     email = db.EmailField(required=True, unique=True)
-    password = db.StringField(required=True)
+    password = db.StringField(required=True, min_length=8, max_length=50)
     joke_likes = db.StringField()
     comment_likes = db.StringField()
 

@@ -175,6 +175,7 @@ def joke(jokeid):
 
 		return redirect(url_for('jokes.joke', jokeid=jokeid))
 
+	joke.date = convert_datetime(joke.date)
 	joke.heart_filled_in = str(joke.id) in user_joke_likes_arr
 
 	comments = Comment.objects(jokeid=jokeid).order_by('-date')

@@ -34,8 +34,8 @@ def create_app(test_config=None):
     csp = {
         'default-src': '\'self\'',
         'img-src': ['\'self\'', "data:"],
-        'style-src': ['\'self\'', 'unsafe-inline', 'pro.fontawesome.com', 'stackpath.bootstrapcdn.com'],
-        'script-src': ['\'self\'', 'code.jquery.com', 'cdn.jsdelivr.net', 'stackpath.bootstrapcdn.com', 'unsafe-inline'],
+        'style-src': ['\'self\'', 'pro.fontawesome.com', 'stackpath.bootstrapcdn.com'],
+        'script-src': ['\'self\'', 'code.jquery.com', 'cdn.jsdelivr.net', 'stackpath.bootstrapcdn.com'],
         'font-src': ['\'self\'', 'pro.fontawesome.com']
     }
 
